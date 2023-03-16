@@ -4,6 +4,7 @@ services:
   web-app:
     build:
       context: .
+      dockerfile: Dockerfile
     environment:
       BASE_URL_API: "${BASE_URL_API}"
     ports:

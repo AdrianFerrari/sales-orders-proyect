@@ -75,7 +75,7 @@ function Home() {
     <main className="flex flex-col gap-6 md:p-6 lg:flex-row">
       <header className="flex flex-col gap-4 min-w-[30%]">
         <h1 className="text-3xl font-bold mb-2 underline">Query form</h1>
-        <form onSubmit={handleSubmit} className="flex flex-col gap-1">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-1" data-cy="form">
           <label htmlFor="sales_person_name">Sales person name:</label>
           <input
             className="border bg-gray-50"
@@ -87,7 +87,7 @@ function Home() {
             value={conditions.sname[0]}
             onChange={handleInput}
           />
-          <label htmlFor="customer_name">Customer name:</label>
+          <label htmlFor="customer_name">Customers name:</label>
           <input
             className="border bg-gray-50"
             type="text"
