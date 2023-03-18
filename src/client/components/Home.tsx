@@ -74,7 +74,7 @@ function Home() {
   return (
     <main className="flex flex-col gap-6 md:p-6 lg:flex-row">
       <header className="flex flex-col gap-4 min-w-[30%]">
-        <h1 className="text-3xl font-bold mb-2 underline">Query form</h1>
+        <h1 className="text-3xl font-bold mb-2 underline">Query forms</h1>
         <form onSubmit={handleSubmit} className="flex flex-col gap-1" data-cy="form">
           <label htmlFor="sales_person_name">Sales person name:</label>
           <input
@@ -134,7 +134,7 @@ function Home() {
             onClick={() => setIsViewShown(false)}
             className="flex flex-col absolute inset-0 justify-center items-center"
           >
-            <div className="flex flex-col bg-white border border-black max-w-md gap-2 p-2">
+            <div className="flex flex-col bg-white border border-black max-w-md gap-2 p-2 shadow-md shadow-gray-400">
               <div className="flex justify-between">
                 <h2 className="text-xl font-bold underline">invoice_summary</h2>
                 <button onClick={() => setIsViewShown(false)}>[ x ]</button>
@@ -144,7 +144,7 @@ function Home() {
           </div>
         )}
       </header>
-      <section className="flex flex-col gap-6 items-center max-w-2xl m-auto">
+      <section className="flex flex-col gap-6 items-center max-w-2xl m-auto" data-cy="invoices">
         <Invoices data={data} />
       </section>
     </main>

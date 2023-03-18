@@ -16,7 +16,8 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "noImplicitAny": false,
-    "composite": true
+    "composite": true,
+    "baseUrl": "http://localhost:3000"
   },
   "include": ["src"]
 }
