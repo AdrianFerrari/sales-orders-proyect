@@ -11,6 +11,8 @@ export function useQueryState() {
     cname: ["", "", ""],
     ti: ["", "", ""],
     tf: ["", "", ""],
+    tgt: ["", "", ""],
+    tlt: ["", "", ""],
   });
   const handlers = {
     handleInput: (event: any) => {
@@ -29,12 +31,6 @@ export function useQueryState() {
       }
       const queryText = queryArray.concat(conditionsArray.join("&")).join("");
       setQuery(queryText);
-      setConditions(() => ({
-        sname: ["", "", ""],
-        cname: ["", "", ""],
-        ti: ["", "", ""],
-        tf: ["", "", ""],
-      }));
     },
   };
   return { query, conditions, handlers };

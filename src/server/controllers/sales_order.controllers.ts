@@ -8,6 +8,8 @@ const schema = Joi.object({
   sname: Joi.string().allow("").label("Sales person name"),
   ti: Joi.date().iso().optional().label("From date"),
   tf: Joi.date().iso().optional().label("To date"),
+  tgt: Joi.number().label("Total cost greater"),
+  tlt: Joi.number().label("Total cost less"),
 });
 
 function conditionInjecter(conditions: Array<string>, condition: string) {
@@ -58,14 +60,14 @@ const getSalesOrders = async (req: Request, res: Response) => {
       //total cost greater than
       if (req.query.tgt) {
         const { tgt } = await schema.validateAsync(req.query);
-        conditionInjecter(conditions, `total > $${i++}`);
+        conditionInjecter(conditions, `grandtotal >= $${i++}`);
         values.push(tgt.toString());
       }
 
       //total cost less than
       if (req.query.tlt) {
         const { tlt } = await schema.validateAsync(req.query);
-        conditionInjecter(conditions, `total < $${i++}`);
+        conditionInjecter(conditions, `grandtotal < $${i++}`);
         values.push(tlt.toString());
       }
     }

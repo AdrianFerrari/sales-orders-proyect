@@ -90,16 +90,22 @@ const getSalesPersons = async () => {
   }
 };
 
-export const getSalesOrder = async (query) => {
+export const getInvoice = async (query) => {
   try {
     const res = await api.get(query);
     const data = res.data.map((e) => {
       const newOrderTimeTaken = new Date(e.order_time_taken).toLocaleDateString("es-AR");
-      const total = e.products.reduce((acc, obj) => acc + obj.total, 0);
+      const newProducts = e.products.map((product) => {
+        return {
+          ...product,
+          total: Number.parseFloat(product.total).toFixed(2),
+        };
+      });
       return {
         ...e,
         order_time_taken: newOrderTimeTaken,
-        total: Number.parseFloat(total).toFixed(2),
+        grandtotal: Number.parseFloat(e.grandtotal).toFixed(2),
+        products: newProducts,
       };
     });
     return data;

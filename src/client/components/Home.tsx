@@ -1,10 +1,10 @@
 import { useQuery } from "react-query";
-import { getSalesOrder } from "../api/salesApi";
+import { getInvoice } from "../api/salesApi";
 import { useState, useEffect } from "react";
 import Invoices from "./Invoices";
 import InvoiceView from "../utils/InvoiceView";
 import { useQueryState } from "../hooks/useQueryState";
-import { json } from "react-router-dom";
+import { useQueryTextGenerator } from "../hooks/useQueryTextGenerator";
 
 interface dataObject {
   [key: string]: any;
@@ -21,50 +21,11 @@ function Home() {
   const [queryText, setQueryText] = useState<Array<JSX.Element>>();
   const { isLoading, data, isError, error } = useQuery<Array<dataObject>, Error>({
     queryKey: [query],
-    queryFn: () => getSalesOrder(query),
+    queryFn: () => getInvoice(query),
   });
 
-  //Display the query text
-  function getQueryText() {
-    let i = 0;
-    let queryHTML: Array<JSX.Element> = [
-      <p key={i++}>
-        SELECT * FROM invoice_summary
-        <br />
-      </p>,
-    ];
-    const conditionsHTML: Array<JSX.Element> = [];
-    for (const condition of Object.values(conditions)) {
-      if (condition[0]) {
-        conditionsHTML.push(
-          <p key={i++}>
-            &emsp;{condition[1]} {condition[2]} {condition[0]}
-            <br />
-          </p>
-        );
-      }
-    }
-    if (conditionsHTML.length > 0) {
-      queryHTML.push(
-        <p key={i++}>
-          WHERE
-          <br />
-        </p>
-      );
-    }
-    queryHTML = queryHTML.concat(conditionsHTML);
-    queryHTML.push(
-      <p key={i++}>
-        ORDER BY random() LIMIT 30;
-        <br />
-      </p>
-    );
-
-    return queryHTML;
-  }
-
   useEffect(() => {
-    setQueryText(() => getQueryText());
+    setQueryText(() => useQueryTextGenerator(conditions));
   }, [conditions]);
 
   if (isLoading) return <div>Loading...</div>;
@@ -119,6 +80,28 @@ function Home() {
             data-operator="<"
             name="tf"
             value={conditions.tf[0]}
+            onChange={handleInput}
+          />
+          <label htmlFor="total_greater">Grand total cost greater or equal to:</label>
+          <input
+            className="border bg-gray-50"
+            type="number"
+            id="total_greater"
+            data-columnname="grandtotal"
+            data-operator=">="
+            name="tgt"
+            value={conditions.tgt[0]}
+            onChange={handleInput}
+          />
+          <label htmlFor="total_less">Grand total cost lesser than:</label>
+          <input
+            className="border bg-gray-50"
+            type="number"
+            id="total_lessr"
+            data-columnname="grandtotal"
+            data-operator="<"
+            name="tlt"
+            value={conditions.tlt[0]}
             onChange={handleInput}
           />
           <div>{queryText}</div>

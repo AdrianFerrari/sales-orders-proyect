@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "dev": "set HTTP_PROXY=localhost && nodemon src/server/main.ts -w src/server",
+    "dev": "nodemon src/server/main.ts -w src/server",
     "start": "NODE_ENV=production ts-node src/server/main.ts",
     "build": "vite build",
     "debug": "nodemon --inspect=0.0.0.0:9229 server.js"

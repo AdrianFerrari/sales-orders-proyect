@@ -37,7 +37,7 @@ function Invoice({ data }) {
           <p>
             Exp: {data.credit_card_expir_day}/{data.credit_card_expir_month}
           </p>
-          <p className="self-end text-xl font-bold">Total: {data.total}</p>
+          <p className="self-end text-xl font-bold">Grand Total: {data.grandtotal}</p>
         </div>
       </section>
     </main>
