@@ -14,5 +14,5 @@ You can filter the list adding conditions to the query on the frontend and sendi
 ## Screenshot
 
 <div>
-    <img src="./public/screenshot1.png" width="400px" /> 
+    <img src="./public/screenshot1.png" width="600px" /> 
 </div>
