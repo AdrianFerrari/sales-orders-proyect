@@ -23,7 +23,10 @@ function App() {
       <main className="min-h-screen p-4 flex flex-col gap-2 overflow-x-auto">
         <header className="flex gap-2 justify-evenly">
           <Link className={activeLink("/")} to="/">
-            Sales Order
+            Invoices
+          </Link>
+          <Link className={activeLink("/sales_orders")} to="/sales_orders">
+            Sales Orders
           </Link>
           <Link className={activeLink("/customers")} to="/customers">
             Customers

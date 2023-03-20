@@ -14,4 +14,6 @@ router.get("/sales_item", controllers.getSalesItems);
 
 router.get("/sales_person", controllers.getSalesPeople);
 
+router.get("/sales_order", controllers.getSalesOrders);
+
 export default router;

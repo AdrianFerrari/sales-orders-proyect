@@ -5,7 +5,7 @@ interface Conditions {
 }
 
 export function useQueryState() {
-  const [query, setQuery] = useState("/sales_order");
+  const [query, setQuery] = useState("/invoices");
   const [conditions, setConditions] = useState<Conditions>({
     sname: ["", "", ""],
     cname: ["", "", ""],
@@ -24,7 +24,7 @@ export function useQueryState() {
     },
     handleSubmit: (event: any) => {
       event.preventDefault();
-      const queryArray: Array<string> = ["/sales_order/?"];
+      const queryArray: Array<string> = ["/invoices/?"];
       const conditionsArray: Array<string> = [];
       for (const [key, value] of Object.entries(conditions)) {
         if (value[0]) conditionsArray.push(`${key}=${value[0]}`);

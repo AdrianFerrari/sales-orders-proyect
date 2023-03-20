@@ -48,6 +48,11 @@ const router = createBrowserRouter([
         element: <Table getFunction={api.getSalesPersons} title="sales_people" />,
         errorElement: <ErrorBoundary />,
       },
+      {
+        path: "sales_orders",
+        element: <Table getFunction={api.getSalesOrders} title="sales_orders" />,
+        errorElement: <ErrorBoundary />,
+      },
     ],
   },
 ]);

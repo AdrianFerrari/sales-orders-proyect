@@ -16,6 +16,6 @@ if (process.env.NODE_ENV === "production") {
 const port = parseInt(process.env.PORT!) || 3000;
 
 app.use("/tables", tablesRoutes);
-app.use("/sales_order", salesOrderRoutes);
+app.use("/invoices", salesOrderRoutes);
 
 ViteExpress.listen(app, port, () => console.log(`Server is listening on port ${port}...`));

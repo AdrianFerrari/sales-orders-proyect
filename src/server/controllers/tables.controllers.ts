@@ -8,9 +8,7 @@ const getCustomers = async (req: Request, res: Response) => {
 };
 
 const getItems = async (req: Request, res: Response) => {
-  const response = await pool.query(
-    "SELECT product_id, size, color, price, id FROM item;"
-  );
+  const response = await pool.query("SELECT product_id, size, color, price, id FROM item;");
   res.json(response.rows);
 };
 
@@ -34,6 +32,11 @@ const getSalesPeople = async (req: Request, res: Response) => {
   res.json(response.rows);
 };
 
+const getSalesOrders = async (req: Request, res: Response) => {
+  const response = await pool.query("SELECT * FROM sales_order");
+  res.json(response.rows);
+};
+
 export default {
   getCustomers,
   getItems,
@@ -41,4 +44,5 @@ export default {
   getProducts,
   getSalesItems,
   getSalesPeople,
+  getSalesOrders,
 };

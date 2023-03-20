@@ -2,10 +2,13 @@ import { Pool } from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 
+const host = process.env.NODE_ENV === "production" ? process.env.PGHOST_PROD : process.env.PGHOST_LOCAL;
+const port = process.env.NODE_ENV === "production" ? process.env.PGPORT_PROD : process.env.PGPORT_LOCAL;
+
 export const pool = new Pool({
-  host: process.env.PGHOST,
+  host: host,
   user: process.env.PGUSER,
   password: process.env.PGPASSWORD,
   database: process.env.PGDATABASE,
-  port: parseInt(process.env.PGPORT!),
+  port: parseInt(port!),
 });

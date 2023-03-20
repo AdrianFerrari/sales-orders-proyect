@@ -90,11 +90,27 @@ const getSalesPersons = async () => {
   }
 };
 
+const getSalesOrders = async () => {
+  try {
+    const res = await api.get("/tables/sales_order");
+    const data = res.data.map((e) => {
+      const newOrderTimeTaken = new Date(e.time_order_taken).toLocaleDateString("es-AR");
+      return {
+        ...e,
+        time_order_taken: newOrderTimeTaken,
+      };
+    });
+    return data;
+  } catch (error: any) {
+    throw new UserError(error);
+  }
+};
+
 export const getInvoice = async (query) => {
   try {
     const res = await api.get(query);
     const data = res.data.map((e) => {
-      const newOrderTimeTaken = new Date(e.order_time_taken).toLocaleDateString("es-AR");
+      const newOrderTimeTaken = new Date(e.time_order_taken).toLocaleDateString("es-AR");
       const newProducts = e.products.map((product) => {
         return {
           ...product,
@@ -103,7 +119,7 @@ export const getInvoice = async (query) => {
       });
       return {
         ...e,
-        order_time_taken: newOrderTimeTaken,
+        time_order_taken: newOrderTimeTaken,
         grandtotal: Number.parseFloat(e.grandtotal).toFixed(2),
         products: newProducts,
       };
@@ -121,4 +137,5 @@ export default {
   getProducts,
   getSalesItems,
   getSalesPersons,
+  getSalesOrders,
 };
