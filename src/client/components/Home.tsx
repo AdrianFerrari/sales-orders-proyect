@@ -93,7 +93,7 @@ function Home() {
             value={conditions.tgt[0]}
             onChange={handleInput}
           />
-          <label htmlFor="total_less">Grand total cost lesser than:</label>
+          <label htmlFor="total_less">Grand total cost less than:</label>
           <input
             className="border bg-gray-50"
             type="number"
