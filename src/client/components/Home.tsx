@@ -48,7 +48,7 @@ function Home() {
             value={conditions.sname[0]}
             onChange={handleInput}
           />
-          <label htmlFor="customer_name">Customers name:</label>
+          <label htmlFor="customer_name">Customer name:</label>
           <input
             className="border bg-gray-50"
             type="text"
