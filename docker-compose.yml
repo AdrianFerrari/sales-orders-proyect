@@ -14,8 +14,10 @@ services:
     working_dir: /app
 
   postgres:
-    image: postgres:latest
     restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile.postgres
     environment:
       POSTGRES_HOST: localhost
       POSTGRES_USER: "${PGUSER}"
